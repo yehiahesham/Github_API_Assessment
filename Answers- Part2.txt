@@ -1,0 +1,36 @@
+Is your code testable? If so, which functions should be tested and what test cases
+should we include? If not, is there a way to make it testable?
+
+getdata(cb),buildHtml(req,langs),formatDate(date) only.
+
+
+formatDate() should be tested for the correctness of the format of the Date in order not to waste time waiting for a false query. we can test it:
+ - if we through to it something that isn't a date object type
+ - the range it can handle, what is the max/min dates ?
+
+getdata() should be tested for the time it takes whether the data isn't corrupted, because as we rely here on external API. we can test it :
+ - for the max acceptable time, if it exceeds either to retry or terminate
+ - the status of the received data , if isn't corrupted.
+ - the number of results, as we need at least 100 , we need to test for what happens on less than that.
+
+
+buildHtml() should be tested in how many rows can it handle  and whether the data to be filled isn't false. we can test it :
+ - invalid data to be entered like null, undefined numbers, or empty strings.
+ - whether there is a floor/ceiling limit for the #of rows the table. for example, the min is to be 100  and max is to be 1000. or multiples of that. but not zero.
+
+
+
+
+2. Suppose you are asked to allow users of the app to specify the date range for the
+analysis (i.e. rather than repos created in the last 90 days, the user is free to select any
+arbitrary date range). How would you implement this?
+
+I would create input fields (either text boxes or a date pickers) for the two dates and a button, validate the input (that the days are between Today and the smallest acceptable date ), and integrate it back in my code. Also, to get a smooth and flexible interaction, both inputs are validated first before the query is executed in order to not waste time waiting for a false query to return.
+
+
+
+3. Suppose you are asked to do the same for the number of repos to consider (i.e. rather
+than the top 100, the user is free to select any multiple of 100). Is this different? What
+special considerations are there?
+
+since the APi retrieve 1000 per page, we will be concerned by how many pages we have and how many repos exits in the last page. it would be easier and faster way is  if the API can give us the #of pages available or whether there exist another page. this way we can know our limits, validate the user input (# of repos), and directly retrieve the requested Repos once and for all. However, if we can't acquire such info, we will work by step by step, adding results together, and finally displaying either the max we can get or exactly the same request number of reposi. adding here can be implemented through the same code + an extra loop to loop over the pages. 
