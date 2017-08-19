@@ -1,4 +1,4 @@
-Is your code testable? If so, which functions should be tested and what test cases
+1.Is your code testable? If so, which functions should be tested and what test cases
 should we include? If not, is there a way to make it testable?
 
 getdata(cb),buildHtml(req,langs),formatDate(date) only.
@@ -20,7 +20,7 @@ buildHtml() should be tested in how many rows can it handle  and whether the dat
 
 
 
-
+=============================================================================================================================
 2. Suppose you are asked to allow users of the app to specify the date range for the
 analysis (i.e. rather than repos created in the last 90 days, the user is free to select any
 arbitrary date range). How would you implement this?
@@ -30,7 +30,7 @@ I would create input fields (either text boxes or a date pickers) for the two da
 Also, to get a smooth and flexible interaction, both inputs are validated first before the query is executed in order to not waste time waiting for a false query to return.
 
 
-
+=============================================================================================================================
 3. Suppose you are asked to do the same for the number of repos to consider (i.e. rather
 than the top 100, the user is free to select any multiple of 100). Is this different? What
 special considerations are there?
