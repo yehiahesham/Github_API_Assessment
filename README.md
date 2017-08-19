@@ -14,9 +14,13 @@ row for each unique programming language in the api result, and there should be 
 
 After you clone, you will install the excternal API dependency first. Open your terminal and Type : `npm install github-api`
 
+you can read more for info:
+https://github.com/github-tools/github
+https://help.github.com/articles/searching-repositories/
 
 
-To Run the code , Open your Terminal and Type: `node Tutorama.js` . Open Your Browser, go to this: http://localhost:8080/. You can see what happenes in the Background from the Terminal as the Page will automaically starts loading the Top 100, wait for a few seconds and you will get something like this:
+To Run the code , Open your Terminal and Type: `node Tutorama.js` .
+Open Your Browser, go to this: http://localhost:8080/. You can see what happenes in the Background from the Terminal as the Page will automaically starts loading the Top 100, wait for a few seconds and you will get something like this:
 
 
 ![alt tag](https://github.com/yehiahesham/Github_API_Assessment/blob/master/screenshot.png)
