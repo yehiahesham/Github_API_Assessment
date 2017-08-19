@@ -9,7 +9,9 @@ var past90 = new Date();
 past90.setDate(today.getDate()-90); //calcu. the date from 90 days ago
 
 function formatDate(date) { // converting to the required format of the github-api  query
-    var d = new Date(date),
+    if(date instanceof Date && !isNaN(date.valueOf()))
+    {
+      var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
@@ -18,6 +20,10 @@ function formatDate(date) { // converting to the required format of the github-a
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
+  }
+  else {
+    return console.error('not a date type !');
+  }
 }
 
 function buildHtml(req,langs) { //creates HTML object to display the results in table
@@ -54,7 +60,6 @@ function getdata(cb){
 
   search.forRepositories(options).then((data)=>{ // using the github-api to search for repositories
       console.log('Received '+data['data'].length);
-
                 for (var i = 0; i < 100; i++) // getting the Top 100 from the 1000
                  {
                    var lang = data['data'][i]['language'];
@@ -80,14 +85,18 @@ function getdata(cb){
                     langs[l].avg_stars_per_repo/=Math.round(langs[l].repo_count) ;
                     langs[l].avg_forks_per_repo/=Math.round(langs[l].repo_count) ;
                   }
-                  cb(langs); // returing with the resulsts in a callback.
+                  cb(langs,null); // returing with the resulsts in a callback.
+           }).catch((e)=>{//error handling logic
+              return cb(null,e);
            });
 }
 
 console.log('Server Runing,  Go to http://localhost:8080/');
 http.createServer(function (req, res) {
   console.log('Receiving Now Top 100 repositories ... ');
-  getdata((langs)=>{ // try query the Top 100 repositories
+  getdata((langs,error)=>{ // try query the Top 100 repositories
+              if(langs!= null && error!=null )
+             {
              console.log('Displaying Results');
              console.log('------------------------');
              var html = buildHtml(req,langs);
@@ -97,5 +106,7 @@ http.createServer(function (req, res) {
                'Expires': new Date().toUTCString()
              });
              res.end(html);
+           }
+           else { throw 'error happened, '+error; }
            });
 }).listen(8080);
