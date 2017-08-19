@@ -25,7 +25,9 @@ buildHtml() should be tested in how many rows can it handle  and whether the dat
 analysis (i.e. rather than repos created in the last 90 days, the user is free to select any
 arbitrary date range). How would you implement this?
 
-I would create input fields (either text boxes or a date pickers) for the two dates and a button, validate the input (that the days are between Today and the smallest acceptable date ), and integrate it back in my code. Also, to get a smooth and flexible interaction, both inputs are validated first before the query is executed in order to not waste time waiting for a false query to return.
+I would create input fields (either text boxes or a date pickers) for the two dates and a button, validate the input (that the days are between Today and the smallest acceptable date ), and integrate it back in my code.
+
+Also, to get a smooth and flexible interaction, both inputs are validated first before the query is executed in order to not waste time waiting for a false query to return.
 
 
 
@@ -33,4 +35,6 @@ I would create input fields (either text boxes or a date pickers) for the two da
 than the top 100, the user is free to select any multiple of 100). Is this different? What
 special considerations are there?
 
-since the APi retrieve 1000 per page, we will be concerned by how many pages we have and how many repos exits in the last page. it would be easier and faster way is  if the API can give us the #of pages available or whether there exist another page. this way we can know our limits, validate the user input (# of repos), and directly retrieve the requested Repos once and for all. However, if we can't acquire such info, we will work by step by step, adding results together, and finally displaying either the max we can get or exactly the same request number of reposi. adding here can be implemented through the same code + an extra loop to loop over the pages. 
+since the APi retrieve 1000 per page, we will be concerned by how many pages we have and how many repos exits in the last page.it would be easier and faster way is  if the API can give us the #of pages available or whether there exist another page. this way we can know our limits, validate the user input (# of repos), and directly retrieve the requested Repos once and for all. 
+
+However, if we can't acquire such info, we will work by step by step, adding results together, and finally displaying either the max we can get or exactly the same request number of reposi. adding here can be implemented through the same code + an extra loop to loop over the pages. 
