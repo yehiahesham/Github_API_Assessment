@@ -12,7 +12,7 @@ repo.
 row for each unique programming language in the api result, and there should be 4 columns
 (Language, Num Repos, Avg Stars, Avg Forks).
 
-After you clone, you will install the excternal API dependency first. Open your terminal and Type : `npm install github-api`
+After you clone, you will install the external API dependency first. Open your terminal and Type : `npm install github-api`
 
 you can read more for info:
 
