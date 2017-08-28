@@ -95,7 +95,7 @@ console.log('Server Runing,  Go to http://localhost:8080/');
 http.createServer(function (req, res) {
   console.log('Receiving Now Top 100 repositories ... ');
   getdata((langs,error)=>{ // try query the Top 100 repositories
-              if(langs!= null && error!=null )
+              if(langs!= null && error==null )
              {
              console.log('Displaying Results');
              console.log('------------------------');
