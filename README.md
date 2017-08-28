@@ -14,7 +14,7 @@ row for each unique programming language in the api result, and there should be 
 
 After you clone, you will install the external API dependency first. Open your terminal and Type : `npm install github-api`
 
-you can read more for info:
+you can read more info on:
 
 https://github.com/github-tools/github
 
